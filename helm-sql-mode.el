@@ -18,7 +18,7 @@
 (require 'sql-mode)
 (require 'helm)
 
-(defun helm-sql-connect ()
+(defun helm-sql-mode-connect ()
   "Populate helm buffer with connection string names from a populated sql-connection-alist."
   (with-helm-current-buffer
     (mapcar (lambda (element)
@@ -26,17 +26,18 @@
                 (value (cdr element)))
             (message "%s" key))) sql-connection-alist)))
 
-(setq sql-connection-pool
+(setq helm-sql-mode-connection-pool
   '((name . "PGSQL Connections")
     (candidates . helm-sql-connect)
     (action . (lambda (connection)
                 (sql-connect connection)))))
 
-(defun helm-sql-connect-to ()
+;;;###autoload
+(defun helm-sql-mode-connect-to ()
   "Helm directive to call when wanting to list SQL connections to connect to."
   (interactive)
-  (helm :sources '(sql-connection-pool)
-        :buffer "*sql-connection*"))
+  (helm :sources '(helm-sql-mode-connection-pool)
+        :buffer "*helm-sql-connection*"))
 
 (provide 'helm-sql-mode)
 
