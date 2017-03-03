@@ -15,6 +15,7 @@
 
 ;;; Code:
 
+(require 'sql-mode)
 (require 'helm-config)
 
 (defun helm-sql-connect ()
