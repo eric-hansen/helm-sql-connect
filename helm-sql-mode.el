@@ -33,7 +33,7 @@
                 (sql-connect connection)))))
 
 ;;;###autoload
-(defun helm-sql-mode-connect-to ()
+(defun helm-sql-connect-to ()
   "Helm directive to call when wanting to list SQL connections to connect to."
   (interactive)
   (helm :sources '(helm-sql-connection-pool)
