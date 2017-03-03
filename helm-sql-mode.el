@@ -15,10 +15,10 @@
 
 ;;; Code:
 
-(require 'sql-mode)
+(require 'sql)
 (require 'helm)
 
-(defun helm-sql-mode-connect ()
+(defun helm-sql-connect ()
   "Populate helm buffer with connection string names from a populated sql-connection-alist."
   (with-helm-current-buffer
     (mapcar (lambda (element)
@@ -26,7 +26,7 @@
                 (value (cdr element)))
             (message "%s" key))) sql-connection-alist)))
 
-(setq helm-sql-mode-connection-pool
+(defvar helm-sql-connection-pool
   '((name . "PGSQL Connections")
     (candidates . helm-sql-connect)
     (action . (lambda (connection)
@@ -36,7 +36,7 @@
 (defun helm-sql-mode-connect-to ()
   "Helm directive to call when wanting to list SQL connections to connect to."
   (interactive)
-  (helm :sources '(helm-sql-mode-connection-pool)
+  (helm :sources '(helm-sql-connection-pool)
         :buffer "*helm-sql-connection*"))
 
 (provide 'helm-sql-mode)
