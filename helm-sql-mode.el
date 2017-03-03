@@ -16,7 +16,7 @@
 ;;; Code:
 
 (require 'sql-mode)
-(require 'helm-config)
+(require 'helm)
 
 (defun helm-sql-connect ()
   "Populate helm buffer with connection string names from a populated sql-connection-alist."
