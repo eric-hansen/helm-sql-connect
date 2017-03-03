@@ -37,7 +37,7 @@
   "Helm directive to call when wanting to list SQL connections to connect to."
   (interactive)
   (helm :sources '(helm-sql-connection-pool)
-        :buffer "*helm-sql-connection*"))
+        :buffer "*sql-connection*"))
 
 (provide 'helm-sql-mode)
 
