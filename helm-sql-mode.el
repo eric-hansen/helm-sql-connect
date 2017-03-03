@@ -11,10 +11,7 @@
 
 ;;; Commentary:
 ;;
-;; An iMessage interface for osx
-;;
-;; Only supports osx and imessage
-;;
+;; Only Postgres is supported right now, but fixing that is definitely on the TODO.
 
 ;;; Code:
 
