@@ -15,7 +15,8 @@
 
 ;;; Code:
 
-(require 'helm-config)
+(require 'sql)
+(require 'helm)
 
 (defun helm-sql-connect ()
   "Populate helm buffer with connection string names from a populated sql-connection-alist."
@@ -25,16 +26,17 @@
                 (value (cdr element)))
             (message "%s" key))) sql-connection-alist)))
 
-(setq sql-connection-pool
+(defvar helm-sql-connection-pool
   '((name . "PGSQL Connections")
     (candidates . helm-sql-connect)
     (action . (lambda (connection)
                 (sql-connect connection)))))
 
+;;;###autoload
 (defun helm-sql-connect-to ()
   "Helm directive to call when wanting to list SQL connections to connect to."
   (interactive)
-  (helm :sources '(sql-connection-pool)
+  (helm :sources '(helm-sql-connection-pool)
         :buffer "*sql-connection*"))
 
 (provide 'helm-sql-mode)
