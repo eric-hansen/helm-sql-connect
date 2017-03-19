@@ -11,7 +11,8 @@
 
 ;;; Commentary:
 ;;
-;; Pretty cool, huh?!
+;; Provides the command `helm-sql-connect', which uses helm to prompt
+;; for and connect to a database connection in `sql-connection-alist'.
 
 ;;; Code:
 
@@ -19,17 +20,14 @@
 (require 'helm)
 
 (defun helm-sql-connect-to ()
-  "Populate helm buffer with connection string names from a populated ‘sql-connection-alist’."
+  "Populate helm buffer with connection string names from a populated `sql-connection-alist'."
   (with-helm-current-buffer
-    (let (connection-names '())
-      (setq connection-names (mapcar 'car sql-connection-alist))
-      connection-names)))
+    (mapcar 'car sql-connection-alist)))
 
 (defvar helm-sql-connect-pool
   '((name . "SQL Connections")
     (candidates . helm-sql-connect-to)
-    (action . (lambda (connection)
-                (sql-connect connection)))))
+    (action . #'sql-connect)))
 
 ;;;###autoload
 (defun helm-sql-connect ()
